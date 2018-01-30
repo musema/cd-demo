@@ -10,7 +10,7 @@
   <url>http://maven.apache.org</url>
   <scm>
   	<connection>scm:git:https://github.com/musema/cd-demo.git</connection>
-    <tag>mrp-demo-0.1.0</tag>
+  	<tag>mrp-demo-0.1.0</tag>
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,6 +52,49 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5.3</version>
      </plugin>
+     <plugin>
+	  <groupId>com.atlassian.maven.plugins</groupId>
+	  <artifactId>maven-jgitflow-plugin</artifactId>
+	  <version>1.0-alpha20</version>
+	  <configuration>
+	    <!-- Enable this to push to origin using SSH keys -->
+	    <enableSshAgent>true</enableSshAgent>
+	    <!-- Keep your maven submodules at the same version as the parent POM -->
+	    <autoVersionSubmodules>true</autoVersionSubmodules>
+	    <!--
+	      Pusing in-development features to origin allows all devs to see what each other
+	      are working on
+	    -->
+	    <pushFeatures>true</pushFeatures>
+	    <!--
+	      This allows the CI server (e.g. Jenkins) to automatically push new releases to
+	      origin; you can then either manually deploy them or, if you are doing Continuous
+	      Deployments, auto-deploy them to prod
+	    -->
+	    <pushReleases>true</pushReleases>
+	    <!--
+	      Hot Fixes should be pushed to origin as well so that any dev can pick them up
+	    -->
+	    <pushHotfixes>true</pushHotfixes>
+	    <!--
+	      Prevents deployments from dev workstations so that they can be done by a CI
+	      server
+	    -->
+	    <noDeploy>true</noDeploy>
+	    <flowInitContext>
+	      <!--
+	        You can customize your development branch name. Why? Because it's faster to type
+	        'git push origin dvlp'
+	        than
+	        'git push origin develop'
+	        ;-)
+	      -->
+	      <developBranchName>develop</developBranchName>
+	      <!-- You can also customize your tag prefixes -->
+	      <versionTagPrefix>rev-</versionTagPrefix>
+	    </flowInitContext>
+	  </configuration>
+	</plugin>
     </plugins>
     </build>
 </project>
