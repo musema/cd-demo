@@ -10,7 +10,7 @@
   <url>http://maven.apache.org</url>
   <scm>
   	<connection>scm:git:https://github.com/musema/cd-demo.git</connection>
-  	<tag>mrp-demo-0.1.0</tag>
+  	<tag>cd-demo-0.1.0</tag>
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
